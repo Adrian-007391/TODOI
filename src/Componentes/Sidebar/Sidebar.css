@@ -1,0 +1,49 @@
+.Sidebar{
+	background-color:#51abcb;
+	height: 100vh;
+	min-width: 200px;
+	max-width: 400px;
+	width: 20vw;
+	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+}
+.Sidebar__div--topbar{
+	padding: 10px;
+	display: flex;
+	font-size: 1.5rem;
+	justify-content: center;
+}
+.Sidebar__div--listcontainer{
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	height: 50vh;
+}
+.Sidebar__a--lists{
+	letter-spacing: 2px;
+
+}
+.Sidebar__button{
+	width: 100%;
+	padding-block: 5px;
+	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+	background-color: #2187ab;
+	border-top: 1px solid gray;
+	border:none;
+
+}
+.Sidebar__button:hover{
+	width: 100%;
+	padding-block: 5px;
+	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+	background-color: #165a72;
+}
+.Sidebar__icon{
+	margin-inline-end: 10px;
+	margin-bottom: -2px;
+	color: red;
+}

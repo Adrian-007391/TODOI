@@ -1,0 +1,9 @@
+.App{
+	display: flex;
+}
+.App__div--content{
+	width: 80vw;
+	display: flex;
+	justify-content: center;
+	padding: 10px;
+}
