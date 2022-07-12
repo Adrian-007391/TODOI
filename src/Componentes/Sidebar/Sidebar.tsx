@@ -26,12 +26,20 @@ function Sidebar(){
     useEffect(()=>getlists() , [])
     const addlistitem= async ()=>{  
         const name:string = prompt("Cual sera el nombre de tu lista");
-        const data:object = {
-            name:name,
-            isactive:false,
-        } 
-        const id:string = (Math.random()*10000).toString() 
-        await setDoc(doc(db, "lists",id),data)
+        if (name == "" ){
+            alert("necesitas poner un nombre para la lista")
+        }
+        else if(name== null){
+        }
+        else {
+
+            const data:object = {
+                name:name,
+                isactive:false,
+            } 
+            const id:string = (Math.random()*10000).toString() 
+            await setDoc(doc(db, "lists",id),data)
+        }
         
     }
     return(
