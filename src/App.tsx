@@ -1,10 +1,11 @@
-import {collection, onSnapshot} from 'firebase/firestore'
+import {collection, deleteDoc, doc, onSnapshot} from 'firebase/firestore'
 import { useEffect, useState } from 'react'
 import './App.css'
 import {db} from './firebase'
 import Sidebar from './Componentes/Sidebar/Sidebar'
+import Taskcontainer from './Componentes/taskcontainer/Taskcontainer'
 function App() {
-  const [activelist,setactivelist]= useState<any>({});
+  const [activelist,setactivelist]= useState<any>(undefined);
   const getlists=()=>{
     onSnapshot(collection(db, "lists"), doclist=>{
       doclist.forEach(document=>{
@@ -14,15 +15,21 @@ function App() {
       })
     })
   }
+  const deletelist = async ()=>{
+    await deleteDoc(doc(db,"lists" , activelist.id))
+    setactivelist(undefined)
+  }
   useEffect(getlists,[])
   return(
     <div className='App'>
-      <Sidebar/>
+      <Sidebar activelist={activelist} setactivelist={setactivelist}/>
       <div className='App__div--content'>
         <h1>
-          {activelist.name}
+          {activelist?activelist.name:""}
         </h1>
+        <button  onClick={deletelist}className='App__button--delete'>delete list</button>
       </div>
+      <Taskcontainer/>
     </div>
   )
 }

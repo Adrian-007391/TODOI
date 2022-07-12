@@ -4,17 +4,21 @@ import {db} from '../../firebase'
 import {onSnapshot , collection ,setDoc, doc} from 'firebase/firestore'
 import List from '../list/List';
 import {GrAddCircle} from 'react-icons/gr'
-function Sidebar(){
-    let [activelist , setactivelist] = useState<any>();
+function Sidebar(props:any){
+    type list = {
+        name :string,
+        isactive:boolean,
+        tasks:[object]|[],
+    }
     const [lists , setlists] = useState<object>([]);
-    let docs:object =[];
+    let docs:[object]|[] =[];
     const getlists:any= () =>{
         onSnapshot(collection(db,"lists"),doclist=>{
             setlists([])
             docs =[];
             doclist.forEach(docitem=>{
                 if(docitem.data().isactive ==true){
-                    setactivelist(docitem)
+                    props.setactivelist(docitem)
                 }
                 docs.push({...docitem.data(),id:docitem.id})
 
@@ -25,7 +29,7 @@ function Sidebar(){
     }
     useEffect(()=>getlists() , [])
     const addlistitem= async ()=>{  
-        const name:string = prompt("Cual sera el nombre de tu lista");
+        const name:string|null = prompt("Cual sera el nombre de tu lista");
         if (name == "" ){
             alert("necesitas poner un nombre para la lista")
         }
@@ -33,9 +37,10 @@ function Sidebar(){
         }
         else {
 
-            const data:object = {
+            const data:list= {
                 name:name,
                 isactive:false,
+                tasks:[],
             } 
             const id:string = (Math.random()*10000).toString() 
             await setDoc(doc(db, "lists",id),data)
@@ -51,7 +56,7 @@ function Sidebar(){
                 <a className='Sidebar__a--lists'>lists</a>
                {lists.map(
                    e=>(
-                       <List activelist= {activelist}id = {e.id}isactive={e.isactive}name = {e.name} key={e.id}/>
+                       <List activelist={props.activelist}id = {e.id}isactive={e.isactive}name = {e.name} key={e.id}/>
                    )
                )}
            </div>

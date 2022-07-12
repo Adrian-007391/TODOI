@@ -10,14 +10,29 @@ type Listtype ={
 }
 function List(props:Listtype){
     const setactivelist = async ()=>{
-        await setDoc(doc(db,"lists",props.activelist.id),{
-            name:props.activelist.data().name,
-            isactive:false
-        });
-        await setDoc(doc(db,"lists",props.id),{
-            name:props.name,
-            isactive:true,
-        })
+        if (props.activelist==undefined){
+            await setDoc(doc(db,"lists",props.id),{
+                name:props.name,
+                isactive:true,
+            })
+        }
+        else if(props.activelist.name ==props.name){
+            await setDoc(doc(db,"lists",props.id),{
+                name:props.name,
+                isactive:false,
+            })
+
+        }
+        else {
+            await setDoc(doc(db,"lists",props.activelist.id),{
+                name:props.activelist.name,
+                isactive:false
+            });
+            await setDoc(doc(db,"lists",props.id),{
+                name:props.name,
+                isactive:true,
+            })
+        }
 
         
     }
