@@ -1,0 +1,13 @@
+.Taskcontainer{
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+}
+.Taskcontainer__input{
+	border: 5px solid #51abcb;
+	width: 78.5vw;
+	font-size: large;
+}

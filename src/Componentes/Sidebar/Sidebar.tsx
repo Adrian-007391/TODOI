@@ -56,7 +56,7 @@ function Sidebar(props:any){
                 <a className='Sidebar__a--lists'>lists</a>
                {lists.map(
                    e=>(
-                       <List activelist={props.activelist}id = {e.id}isactive={e.isactive}name = {e.name} key={e.id}/>
+                       <List tasks = {e.tasks}activelist={props.activelist}id = {e.id}isactive={e.isactive}name = {e.name} key={e.id}/>
                    )
                )}
            </div>

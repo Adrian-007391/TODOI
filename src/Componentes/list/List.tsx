@@ -6,6 +6,7 @@ type Listtype ={
     name:string,
     isactive:boolean,
     id:string,
+    tasks:[object]|[],
     activelist:any
 }
 function List(props:Listtype){
@@ -14,23 +15,27 @@ function List(props:Listtype){
             await setDoc(doc(db,"lists",props.id),{
                 name:props.name,
                 isactive:true,
+                tasks:props.tasks
             })
         }
         else if(props.activelist.name ==props.name){
             await setDoc(doc(db,"lists",props.id),{
                 name:props.name,
                 isactive:false,
+                tasks:props.tasks,
             })
 
         }
         else {
             await setDoc(doc(db,"lists",props.activelist.id),{
                 name:props.activelist.name,
-                isactive:false
+                isactive:false,
+                tasks:props.activelist.tasks,
             });
             await setDoc(doc(db,"lists",props.id),{
                 name:props.name,
                 isactive:true,
+                tasks:props.tasks,
             })
         }
 

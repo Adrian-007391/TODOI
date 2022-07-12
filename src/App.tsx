@@ -28,8 +28,8 @@ function App() {
           {activelist?activelist.name:""}
         </h1>
         <button  onClick={deletelist}className='App__button--delete'>delete list</button>
+        <Taskcontainer list = {activelist?activelist:undefined}/>
       </div>
-      <Taskcontainer/>
     </div>
   )
 }
